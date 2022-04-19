@@ -360,6 +360,7 @@ def bienvenida():
                pass
 
     elif user in administrativo:
+        # todo este codigo hay que cambiarlo 
 
         print( """
                 |||||||                          |||||||
