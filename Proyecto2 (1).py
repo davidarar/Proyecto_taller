@@ -10,6 +10,7 @@ estado=''
 actividades=[]
 
 a=5
+#hola 
 
 def cambiar_carrera():
     
