@@ -9,7 +9,7 @@ usuarios= {} #diccionario para meter los usuarios con su contraseña
 estado=''
 actividades=[]
 
-
+#hola 
 
 def cambiar_carrera():
     
