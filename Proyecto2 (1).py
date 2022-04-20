@@ -52,7 +52,7 @@ def cambiar_carrera():
 
 def matri_curso():
 
- 
+ #de todo print
 
     print('''
                     -------------------------------------------- CARRERAS  ------------------------------------------
