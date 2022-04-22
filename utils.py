@@ -2,7 +2,6 @@ from hashlib import md5
 from getpass import getpass
 import time
 
-lista=[1,2,3,4,5,6,7,8,9]
 
 def cifrar (entrada):
     entrada_binaria=entrada.encode('ascii')

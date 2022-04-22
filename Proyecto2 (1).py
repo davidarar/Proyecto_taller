@@ -1,18 +1,32 @@
 # Inicio del sistema 
 from utils import cifrar,obtener_calve
 
-cursos=[]
-carreras=[]
-estudiante= {}
-administrativo= {}
-usuarios= {} #diccionario para meter los usuarios con su contraseña     
-estado=''
-actividades=[]
+cursos =({'Curso':'Comunicacion Escrita','Créditos': 2 ,'Horas lectivas': 3 ,'Fecha de inicio':'07-02-2022','Fecha de finalización':'03-06-2022','Horario de clases':'Lunes/5:05pm-7:45pm'},
+         {'Curso':'Quimica Basica 1','Créditos':3 ,'Horas lectivas': 4 ,'Fecha de inicio':'07-02-2022','Fecha de finalización':'03-06-2022','Horario de clases':'Martes,Jueves/7:55am-9:40am'},
+         {'Curso':'Matematica General','Créditos':2 ,'Horas lectivas': 5 ,'Fecha de inicio':'07-02-2022','Fecha de finalización':'03-06-2022','Horario de clases':'Miercoles/12:30md-4:05pm'})
 
-#hola 
+carreras=('Computacion','Agronomia','Electronica','Administracion de empresas')
+
+estudiante = ({'kris':{'Nombre':'Kristell','Apellido1':'Salazar','Apellido2':'Garcia','Carrera':'Electronica','Usuario':('kris','81dc9bdb52d04dc20036dbd8313ed055')}})
+
+administrativo= {'tomy':{'Nombre':'Tomas','Apellido1':'Rodriguez','Apellido2':'Suarez','Carrera':'Computacion','Usuario':('tomy','4a7d1ed414474e4033ac29ccb8653d9b')},
+                 'tavo':{'Nombre':'Gustavo','Apellido1':'Nuñez','Apellido2':'Amador','Carrera':'Agronomia','Usuario':('tavo','b56a18e0eacdf51aa2a5306b0f533204')}}
+ 
+usuarios= {'tomy':'4a7d1ed414474e4033ac29ccb8653d9b',
+           'kris':'81dc9bdb52d04dc20036dbd8313ed055',
+           'tavo':'b56a18e0eacdf51aa2a5306b0f533204'}
+
+estado=''
+actividades={} 
+ 
+
+def convertir_tuple_list(a):
+    return (list(a))
 
 def cambiar_carrera():
-    
+
+    convertir_tuple_list(estudiante)
+
     print(chr(27)+"[2J")
 
     print('''
@@ -20,7 +34,6 @@ def cambiar_carrera():
                     |             1             |            2            |            3           |              4             |
                     | Ingeniería en Computación | Ingeniería en Agronomía | Ingeniería Electrónica | Administración de Empresas |
         ''')
-
     opc=input('Ingrese el número de la carrera ')
 
     match opc:
@@ -30,13 +43,11 @@ def cambiar_carrera():
                 if estado in elementos:
                     estudiante['Carrera'] = 'Ingeniería en Computación'
                     print(estudiante)
-        
         case 2:
             for elementos in estudiante:
                 if estado in elementos:
                     estudiante['Carrera'] = 'Ingeniería en Agronomía'
                     print(estudiante)
-
         case 3:
             for elementos in estudiante:
                 if estado in elementos:
@@ -50,8 +61,6 @@ def cambiar_carrera():
 
 
 def matri_curso():
-
- 
 
     print('''
                     -------------------------------------------- CARRERAS  ------------------------------------------
@@ -68,13 +77,11 @@ def matri_curso():
                 if estado in elementos:
                     estudiante['Carrera'] = 'Ingeniería en Computación'
                     print(estudiante)
-        
         case 2:
             for elementos in estudiante:
                 if estado in elementos:
                     estudiante['Carrera'] = 'Ingeniería en Agronomía'
                     print(estudiante)
-
         case 3:
             for elementos in estudiante:
                 if estado in elementos:
@@ -86,8 +93,6 @@ def matri_curso():
                     estudiante['Carrera'] = 'Administración de Empresas'
                     print(estudiante)
 
-
-   
 
 
 
@@ -101,9 +106,6 @@ def matri_curso():
     
 
 """
-
-
-
 
 
 def add_curso():
@@ -126,6 +128,7 @@ def add_curso():
                 break
         materia['Carrreras a las que pertenece']= curs_compartido
     
+    convertir_tuple_list(cursos)
     cursos.append(materia)
     
     return materia
@@ -148,8 +151,7 @@ def modif_curs():
             if edit_curs in e:
                 print(True)
        #Falta completar esta parte
-        
-      
+           
     elif opc == 2 :
             for e in cursos:
                 if edit_curs in e:
@@ -167,7 +169,6 @@ def add_carrera():
                 |            IC             |           AG            |           IE           |             ADMI           |
                 | Ingeniería en Computación | Ingeniería en Agronomía | Ingeniería Electrónica | Administración de Empresas |
          ''')
-    
     
     opc = int(input("\n\tDigite el código carrera que desea agregar: "))
 
@@ -187,7 +188,6 @@ def add_carrera():
         else:
             add_carrera()
     
-
 def modif_carrera():
 
     global carreras
@@ -200,21 +200,17 @@ def modif_carrera():
 
                 ¿Qué acción desea realizar?
                 ''')
-        
     if opc == 1 :
         for e in cursos:
             if edit_carrera in e:
                 print(True)
         #Falta completar esta parte
             
-        
     elif opc == 2 :
         for e in carreras:
             if edit_carrera in e:
                 carreras.remove(e)
     return carreras
-
-
 
 
 def bienvenida():
@@ -239,7 +235,6 @@ def bienvenida():
                 3) Salir 
                 
                 """)
-
         opc= int(input('''Ingrese la acción que desea realizar: '''))
         
         if opc == 1: # Registro de usuarios
@@ -251,16 +246,13 @@ def bienvenida():
                             Administrador del tiempo
                     ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
                     |||||||       Registrarse        |||||||                
-                """ )
 
-            print("""
                     1) Estudiante
                     2) Administrativo
                 """)
-
             opc = int(input("\n\tDigite su ocupación: "))
 
-            if opc== 1: # Datos de persona administrativa
+            if opc== 1: # Datos de persona estudiante
                 
                 cuenta_estudiante =dict()
                 cuenta_estudiante ['Nombre'] = input ("\tNombre: ")
@@ -276,6 +268,8 @@ def bienvenida():
                 cuenta_estudiante ['Cuenta de usuario'] = tupla_estudiante
                 
                 usuarios[user_estudiante]=contraseña
+
+                convertir_tuple_list(estudiante)
                 estudiante[user_estudiante]=cuenta_estudiante
 
             elif opc == 2: # Datos de persona administrativa
@@ -301,7 +295,8 @@ def bienvenida():
                     cuenta_admin ['Cuenta de usuario'] = tupla_admin
 
                     usuarios[user_admin]=contraseña
-                    administrativo[user_admin]=cuenta_admin
+                    temp_admin = convertir_tuple_list(administrativo)
+                    temp_admin[user_admin]=cuenta_admin
 
         elif opc == 2: #Iniciar sesión
             print(chr(27)+"[2J")
@@ -319,10 +314,9 @@ def bienvenida():
 
             if usuarios.get(user) == contraseña: #se comprueba que el usuario y su contraseña estén en el diccionario o supuesta base de datos
                 print(f'\nBienvenido {user}')
-                opc=3
+                break
             else:
-                print('Los siento el usuario o contraseña no son correctos')
-       
+                print('El usuario o la contraseña son incorrectos')
         elif opc == 3:
             exit()
         
@@ -337,9 +331,7 @@ def bienvenida():
                 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
                 |||||||                          |||||||
                             MENÚ PRINCIPAL
-            """ )
 
-        print("""
             1) Cambiar de carrera
             2) Matricular curso
             3) Agregar actividades
@@ -351,7 +343,7 @@ def bienvenida():
 
             case 1:
                 cambiar_carrera()
-
+                
             case 2:
                 matri_curso()
             case 3:
@@ -361,7 +353,7 @@ def bienvenida():
 
     elif user in administrativo:
         # todo este codigo hay que cambiarlo 
-
+        print(chr(27)+"[2J")
         print( """
                 |||||||                          |||||||
                 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
@@ -369,11 +361,8 @@ def bienvenida():
                 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
                 |||||||                          |||||||
                             MENÚ PRINCIPAL
-            """ )
 
-        print("""
-
-            1) Agregar curos
+            1) Agregar cursos
             2) Modificar curso
             3) Agregar carrera
             4) Modificar carrera
@@ -385,17 +374,15 @@ def bienvenida():
 
             case 1:
                 add_curso()
-
             case 2:
                 modif_curs()
             case 3:
                 add_carrera()
-
             case 4:
                 modif_carrera()
     
     global estado
-    estado=user
+    #estado=user
 
     return user
 
