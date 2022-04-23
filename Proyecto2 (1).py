@@ -1,111 +1,28 @@
 # Inicio del sistema 
 from utils import cifrar,obtener_calve
 
-cursos =({'Curso':'Comunicacion Escrita','Créditos': 2 ,'Horas lectivas': 3 ,'Fecha de inicio':'07-02-2022','Fecha de finalización':'03-06-2022','Horario de clases':'Lunes/5:05pm-7:45pm'},
-         {'Curso':'Quimica Basica 1','Créditos':3 ,'Horas lectivas': 4 ,'Fecha de inicio':'07-02-2022','Fecha de finalización':'03-06-2022','Horario de clases':'Martes,Jueves/7:55am-9:40am'},
-         {'Curso':'Matematica General','Créditos':2 ,'Horas lectivas': 5 ,'Fecha de inicio':'07-02-2022','Fecha de finalización':'03-06-2022','Horario de clases':'Miercoles/12:30md-4:05pm'})
+cursos =({'Curso':'Comunicacion Escrita','Créditos': 2 ,'Horas lectivas': 3 ,'Fecha de inicio':'07-02-2022','Fecha de finalización':'03-06-2022','Horario de clases':'Lunes/5:05pm-7:45pm','Carreras':['Computacion','Agronomia','Administracion de Empresas']},
+         {'Curso':'Quimica Basica 1','Créditos':3 ,'Horas lectivas': 4 ,'Fecha de inicio':'07-02-2022','Fecha de finalización':'03-06-2022','Horario de clases':'Martes,Jueves/7:55am-9:40am','Carreras':['Agronomia','Electronica']},
+         {'Curso':'Matematica General','Créditos':2 ,'Horas lectivas': 5 ,'Fecha de inicio':'07-02-2022','Fecha de finalización':'03-06-2022','Horario de clases':'Miercoles/12:30md-4:05pm','Carreras':['Computacion','Agronomia','Administracion de Empresas','Electronica']})
 
-carreras=('Computacion','Agronomia','Electronica','Administracion de empresas')
+carreras = ('Computacion','Agronomia','Electronica','Administracion de empresas')
 
-estudiante = ({'kris':{'Nombre':'Kristell','Apellido1':'Salazar','Apellido2':'Garcia','Carrera':'Electronica','Usuario':('kris','81dc9bdb52d04dc20036dbd8313ed055')}})
+estudiante = {'kris':{'Nombre':'Kristell','Apellido1':'Salazar','Apellido2':'Garcia','Carrera':'Electronica','Usuario':('kris','81dc9bdb52d04dc20036dbd8313ed055')}}
 
-administrativo= {'tomy':{'Nombre':'Tomas','Apellido1':'Rodriguez','Apellido2':'Suarez','Carrera':'Computacion','Usuario':('tomy','4a7d1ed414474e4033ac29ccb8653d9b')},
+administrativo = {'tomy':{'Nombre':'Tomas','Apellido1':'Rodriguez','Apellido2':'Suarez','Carrera':'Computacion','Usuario':('tomy','4a7d1ed414474e4033ac29ccb8653d9b')},
                  'tavo':{'Nombre':'Gustavo','Apellido1':'Nuñez','Apellido2':'Amador','Carrera':'Agronomia','Usuario':('tavo','b56a18e0eacdf51aa2a5306b0f533204')}}
- 
-usuarios= {'tomy':'4a7d1ed414474e4033ac29ccb8653d9b',
-           'kris':'81dc9bdb52d04dc20036dbd8313ed055',
-           'tavo':'b56a18e0eacdf51aa2a5306b0f533204'}
 
-estado=''
-actividades={} 
- 
+actividades ={}  
+
+usuarios = ({'tomy':'4a7d1ed414474e4033ac29ccb8653d9b',
+           'kris':'81dc9bdb52d04dc20036dbd8313ed055',
+           'tavo':'b56a18e0eacdf51aa2a5306b0f533204'})
+
 
 def convertir_tuple_list(a):
     return (list(a))
 
-def cambiar_carrera():
 
-    convertir_tuple_list(estudiante)
-
-    print(chr(27)+"[2J")
-
-    print('''
-                    -------------------------------------------- CARRERAS  ------------------------------------------
-                    |             1             |            2            |            3           |              4             |
-                    | Ingeniería en Computación | Ingeniería en Agronomía | Ingeniería Electrónica | Administración de Empresas |
-        ''')
-    opc=input('Ingrese el número de la carrera ')
-
-    match opc:
-
-        case 1:
-            for elementos in estudiante:
-                if estado in elementos:
-                    estudiante['Carrera'] = 'Ingeniería en Computación'
-                    print(estudiante)
-        case 2:
-            for elementos in estudiante:
-                if estado in elementos:
-                    estudiante['Carrera'] = 'Ingeniería en Agronomía'
-                    print(estudiante)
-        case 3:
-            for elementos in estudiante:
-                if estado in elementos:
-                    estudiante['Carrera'] = 'Ingeniería Electrónica'
-                    print(estudiante)
-        case 4:
-            for elementos in estudiante:
-                if estado in elementos:
-                    estudiante['Carrera'] = 'Administración de Empresas'
-                    print(estudiante)
-
-
-def matri_curso():
-
-    print('''
-                    -------------------------------------------- CARRERAS  ------------------------------------------
-                    |             1             |            2            |            3           |              4             |
-                    | Ingeniería en Computación | Ingeniería en Agronomía | Ingeniería Electrónica | Administración de Empresas |
-        ''')
-
-    carrera=input('Ingrese el número de su carrera ')
-
-    match carrera:
-
-        case 1:
-            for elementos in estudiante:
-                if estado in elementos:
-                    estudiante['Carrera'] = 'Ingeniería en Computación'
-                    print(estudiante)
-        case 2:
-            for elementos in estudiante:
-                if estado in elementos:
-                    estudiante['Carrera'] = 'Ingeniería en Agronomía'
-                    print(estudiante)
-        case 3:
-            for elementos in estudiante:
-                if estado in elementos:
-                    estudiante['Carrera'] = 'Ingeniería Electrónica'
-                    print(estudiante)
-        case 4:
-            for elementos in estudiante:
-                if estado in elementos:
-                    estudiante['Carrera'] = 'Administración de Empresas'
-                    print(estudiante)
-
-
-
-
-#Falta terminar las funciones de actividades
-
-"""def add_actividad():
-
-
-    name_activid= input('Nombre actividad')
-    tipo_actividad = input('Nombre actividad')
-    
-
-"""
 
 
 def add_curso():
@@ -118,7 +35,7 @@ def add_curso():
     materia['Horas lectivas']= int(input("\n\tHoras lectivas: "))
     materia['Fecha de inicio']= input("\n\tFecha de inicio: ")
     materia['Fecha de finalización']= input("\n\tFecha de finalización: ")
-    materia['Horario de clases']= input("\n\tHorario de clases: ")
+    materia['Horario de clases']= input("\n\tHorario de clases [dia/hora]: ")
 
     if ("S" == input('\tEste curso pertenece a otras carreras (S o N):').upper()):
         curs_compartido = []
@@ -158,10 +75,9 @@ def modif_curs():
                     cursos.remove(e)
     return cursos
 
-####################################################################
 
 def add_carrera():
-
+    
     global carreras  
 
     print('''
@@ -268,8 +184,6 @@ def bienvenida():
                 cuenta_estudiante ['Cuenta de usuario'] = tupla_estudiante
                 
                 usuarios[user_estudiante]=contraseña
-
-                convertir_tuple_list(estudiante)
                 estudiante[user_estudiante]=cuenta_estudiante
 
             elif opc == 2: # Datos de persona administrativa
@@ -291,12 +205,11 @@ def bienvenida():
                     print ('\nAutenticación: ')
                     user_admin = input ("\n\n\tNombre de usuario: ")
                     contraseña = cifrar(obtener_calve('\tContraseña '))
-                    tupla_admin= (user_admin,contraseña)
+                    tupla_admin = (user_admin,contraseña)
                     cuenta_admin ['Cuenta de usuario'] = tupla_admin
 
                     usuarios[user_admin]=contraseña
-                    temp_admin = convertir_tuple_list(administrativo)
-                    temp_admin[user_admin]=cuenta_admin
+                    administrativo.append(cuenta_admin)
 
         elif opc == 2: #Iniciar sesión
             print(chr(27)+"[2J")
@@ -309,81 +222,137 @@ def bienvenida():
                                 INICIAR SESIÓN
                  ''')
 
-            user=input('Escriba su usuario: ')
+            user = input('Escriba su usuario: ')
             contraseña = cifrar(obtener_calve('Ingrese su contraseña '))
 
+          
             if usuarios.get(user) == contraseña: #se comprueba que el usuario y su contraseña estén en el diccionario o supuesta base de datos
                 print(f'\nBienvenido {user}')
-                break
+                opc=3
             else:
-                print('El usuario o la contraseña son incorrectos')
+                print('El usuario o la contraseña son incorrectos')  #no lo ejecuta al usar pass
+                
         elif opc == 3:
-            exit()
+            break
         
-    
     if user in estudiante:
 
-        print(chr(27)+"[2J")
-        print( """
-                |||||||                          |||||||
-                ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-                        Administrador del tiempo
-                ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-                |||||||                          |||||||
-                            MENÚ PRINCIPAL
+        while True:
+            print(chr(27)+"[2J")
+            print( """
+                    |||||||                          |||||||
+                    ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+                            Administrador del tiempo
+                    ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+                    |||||||                          |||||||
+                                MENÚ PRINCIPAL
 
-            1) Cambiar de carrera
-            2) Matricular curso
-            3) Agregar actividades
-            4) Salir
-            """) 
-        opc = int(input("\n\tDigite la acción que desea realizar: "))
+                1) Cambiar de carrera
+                2) Matricular curso
+                3) Agregar actividades
+                4) Salir
+                """) 
+            opc = int(input("\n\tDigite la acción que desea realizar: "))
 
-        match opc:
+            match opc: 
+                case 1: # Cambio carrera
+                    print(chr(27)+"[2J")
+                    for e in carreras: #Imprime las carreras disponibles
+                        print(f'\nCarrera disponible: {e}')
 
-            case 1:
-                cambiar_carrera()
-                
-            case 2:
-                matri_curso()
-            case 3:
-                add_carrera()
-            case 4:
-               pass
+                    opc=input('\nIngrese el nombre de la carrera que desea: ')
+
+                    match opc:
+                        case 'Computacion':
+                            estudiante[user]['Carrera'] = 'Computacion'
+                            print(estudiante)
+                        case 'Agronomia':
+                            estudiante[user]['Carrera'] = 'Agronomia'
+                            print(estudiante)
+                        case 'Electronica':
+                            estudiante[user]['Carrera'] = 'Electronica'
+                            print(estudiante)
+                        case 'Administracion de empresas':
+                            estudiante[user]['Carrera'] = 'Administracion de Empresas'
+                            print(estudiante)
+
+                case 2: # Agregar curso
+                    print(chr(27)+"[2J")
+
+                    if 'Computacion' in estudiante[user]['Carrera']:
+                        for e in cursos: 
+                            a = e['Carreras']
+                            if 'Computacion' in a:   
+                                print(f'\nCurso disponible para Computacion: {e["Curso"]}\nCréditos: {e["Créditos"]}\nHoras lectivas: {e["Horas lectivas"]}')
+                        respuesta=input('\nIngrese el nombre del curso que desea matricular:')
+                        if respuesta in cursos[0]['Curso']:
+                            estudiante[user]['Cursos']=respuesta
+                            print(estudiante)
+
+                    elif 'Agronomia' in estudiante[user]['Carrera']:
+                        for e in cursos: 
+                            a = e['Carreras']
+                            for b in a:
+                                if 'Agronomia' in b:
+                                    print(f'\nCurso disponible para Agronomia: {e}')
+                            else:
+                                pass
+                    if 'Electronica' in estudiante[user]['Carrera']:
+                        for e in cursos: 
+                            a = e['Carreras']
+                            for b in a:
+                                if 'Electronica' in b:
+                                    print(f'\nCurso disponible para Electronica: {e}')
+                            else:
+                                pass    
+                    if 'Administracion de Empresas' in estudiante[user]['Carrera']:
+                        for e in cursos: 
+                            a = e['Carreras']
+                            for b in a:
+                                if 'Administracion de Empresas' in b:
+                                    print(f'\nCurso disponible para Administracion de Empresas {e}')
+                            else:
+                                pass
+
+                    opc=input('\nIngrese el nombre de la carrera que desea: ')
+
+                    carrera=input('\nIngrese el número de su carrera ')
+                case 3:
+                    actividades['Descripcion']
+
+                    
+                    
 
     elif user in administrativo:
         # todo este codigo hay que cambiarlo 
-        print(chr(27)+"[2J")
-        print( """
-                |||||||                          |||||||
-                ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-                        Administrador del tiempo
-                ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-                |||||||                          |||||||
-                            MENÚ PRINCIPAL
+        while True:
+            print(chr(27)+"[2J")
+            print( """
+                    |||||||                          |||||||
+                    ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+                            Administrador del tiempo
+                    ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+                    |||||||                          |||||||
+                                MENÚ PRINCIPAL
 
-            1) Agregar cursos
-            2) Modificar curso
-            3) Agregar carrera
-            4) Modificar carrera
+                    1) Agregar cursos
+                    2) Modificar curso
+                    3) Agregar carrera
+                    4) Modificar carrera
+                """)
+            opc = int(input("\tDigite la acción que desea realizar: "))
 
-            """)
-        opc = int(input("\n\tDigite la acción que desea realizar: "))
-
-        match opc:
-
-            case 1:
-                add_curso()
-            case 2:
-                modif_curs()
-            case 3:
-                add_carrera()
-            case 4:
-                modif_carrera()
+            match opc:
+                case 1:
+                    add_curso()
+                case 2:
+                    modif_curs()
+                case 3:
+                    add_carrera()
+                case 4:
+                    modif_carrera()
     
-    global estado
-    #estado=user
-
+    estado=user# permite saber cual es el usuario que esta en el sistema
     return user
 
 bienvenida()
