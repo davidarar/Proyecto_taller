@@ -1,4 +1,3 @@
-
 from utils import cifrar,obtener_calve # Librería que contine funciones que permiten cifrar y ocultar la clave ingresada
 from time import sleep # Libreria que contienen la función sleep que permite agregar un retraso en la ejecución de un programa
 
@@ -177,6 +176,7 @@ def inicio():
                 cuenta_estudiante ['Carrera'] = input("\tCarrera que cursa: ")
 
                 # Solicita usuario y contraseña
+                
                 print("\nAutenticación: ")
                 user_estudiante = input("\n\n\tNombre de usuario: ")
                 contraseña = cifrar(obtener_calve("\tContraseña "))
@@ -364,11 +364,9 @@ def inicio():
                     actividades ['Fecha final'] = input('\t\nIngrese la fecha de finalizacion [aaaa/mm/dd]: ')
                     estudiante[user]['Actividades'] = actividades 
                     print(f"\t\nLa actividad agregada es {estudiante[user]['Actividades']}")
-                    sleep(6)
-                    # Falta asociar las fechas a un dia de la semana 
+                    sleep(6) 
 
-                    #actividades['Semana'] = input('\nDescripción de la actividad: ')
-
+                    
                 case 4: # Imprimir actividades/ Esta parte esta incompleta 
                     print(chr(27)+"[2J")
                     consulta_actividad = input('\t\nIngrese la fecha que desea consultar: ')
@@ -412,5 +410,4 @@ def inicio():
                 case 5: # Sale del sistema 
                     break
     
-
 inicio()
