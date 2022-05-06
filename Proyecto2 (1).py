@@ -277,7 +277,6 @@ def inicio():
                 case 2: # Agregar curso
                     print(chr(27)+"[2J")
                     
-
                     # Se determina cual es la carrera que tiene el usuario 
                     if 'Computacion' in estudiante[user]['Carrera']: 
                         for e in cursos:  # Se toman los diccionarios con los datos de los cursos 
@@ -364,11 +363,9 @@ def inicio():
                     estudiante[user]['Actividades'] = actividades 
                     print(f"\t\nLa actividad agregada es {estudiante[user]['Actividades']}")
                     sleep(3)
-                    # Falta asociar las fechas a un dia de la semana 
 
-                    #actividades['Semana'] = input('\nDescripción de la actividad: ')
 
-                case 4: # Imprimir actividades/ Esta parte esta incompleta 
+                case 4: # Imprimir actividades
                     print(chr(27)+"[2J")
                     consulta_actividad = input('\t\nIngrese la fecha que desea consultar: ')
                     if consulta_actividad in estudiante[user]['Actividades']:
@@ -376,7 +373,7 @@ def inicio():
                         sleep(10)
                     else:
                         print('No tiene ninguna actividad')
-                        sleep(10)
+                        sleep(3)
                 case 5: 
                     break
                                      
@@ -413,3 +410,8 @@ def inicio():
     
 
 inicio()
+
+
+
+
+  
