@@ -1,5 +1,7 @@
 from utils import cifrar,obtener_calve # Librería que contine funciones que permiten cifrar y ocultar la clave ingresada
 from time import sleep # Libreria que contienen la función sleep que permite agregar un retraso en la ejecución de un programa
+import datetime
+import pandas  as pd
 
 # Variable global tipo tupla que guarda diccionarios con datos de cada curso
 cursos =({'Curso':'Comunicacion Escrita','Créditos': 2 ,'Horas lectivas': 3 ,'Fecha inicio':'07-02-2022','Fecha finalizacion':'03-06-2022','Horario clases':'Lunes/5:05pm-7:45pm','Carreras':['Computacion','Agronomia','Administracion de Empresas']},
@@ -10,7 +12,10 @@ cursos =({'Curso':'Comunicacion Escrita','Créditos': 2 ,'Horas lectivas': 3 ,'F
 carreras = ('Computacion','Agronomia','Electronica','Administracion de empresas')
 
 # Variable global tipo diccionario que guarda diccionarios con datos de cada usuario estudiante
-estudiante = {'kris':{'Nombre':'Kristell','Apellido1':'Salazar','Apellido2':'Garcia','Carrera':'Electronica','Usuario':('kris','81dc9bdb52d04dc20036dbd8313ed055'),}}
+estudiante = {'kris':{'Nombre':'Kristell','Apellido1':'Salazar','Apellido2':'Garcia','Carrera':'Electronica','Usuario':('kris','81dc9bdb52d04dc20036dbd8313ed055')}}
+
+
+
 
 # Variable global tipo tupla que guarda diccionarios con datos de cada usuario administrador
 administrativo = {'tomy':{'Nombre':'Tomas','Apellido1':'Rodriguez','Apellido2':'Suarez','Telefono':'87895634','Usuario':('tomy','4a7d1ed414474e4033ac29ccb8653d9b')},
@@ -22,6 +27,10 @@ curso_estudiante=() #Almacena los cursos matriculados por el estudiante
 usuarios = ({'tomy':'4a7d1ed414474e4033ac29ccb8653d9b',
            'kris':'81dc9bdb52d04dc20036dbd8313ed055',
            'tavo':'b56a18e0eacdf51aa2a5306b0f533204'})
+
+
+def cont_dias(list_fechas):
+    return len(list_fechas)
 
 def add_curso():
     """ Función que le permite al usuario administrador agregar un curso y su información.
@@ -249,35 +258,28 @@ def inicio():
             opc = int(input("\n\tDigite la acción que desea realizar: "))
 
             match opc: 
-                case 1: # Cambio carrera
+                case 1: # Cambio carrera MODIFICADO(en las carreras disponibles no se repite la carrera del usuario)
                     print(chr(27)+"[2J")
+                    cont=0
                     for e in carreras: # Imprime las carreras disponibles
-                        print(f'\nCarrera disponible: {e}')
+                        cont+=1
+                        if estudiante[user]['Carrera'] != e:
+                            print(f'\nCarrera disponible -> Codigo:{cont} {e}')
 
-                    opc=input('\nIngrese el nombre de la carrera que desea: ')
+                    opc=int(input('\nIngrese el codigo de la carrera que desea: '))
 
-                    match opc: # Evalua cual es la carrera que se desea agregar y la incorpora a la información del usuario
-                        case 'Computacion': 
-                            estudiante[user]['Carrera'] = 'Computacion'
-                            print(f"\nSu nueva carrera es {estudiante[user]['Carrera']}")
-                            sleep(6)
-                        case 'Agronomia':
-                            estudiante[user]['Carrera'] = 'Agronomia'
-                            print(f"\nSu nueva carrera es {estudiante[user]['Carrera']}")
-                            sleep(6)
-                        case 'Electronica':
-                            estudiante[user]['Carrera'] = 'Electronica'
-                            print(f"\nSu nueva carrera es {estudiante[user]['Carrera']}")
-                            sleep(6)
-                        case 'Administracion de empresas':
-                            estudiante[user]['Carrera'] = 'Administracion de Empresas'
-                            print(f"\nSu nueva carrera es {estudiante[user]['Carrera']}")
-                            sleep(6)
-
+                    cont=0
+                    for e in carreras: # Se vuelve a recorrer las carreras disponibles
+                        cont+=1
+                        if cont == opc: # Mientras el contador no sea igual a la opcion del usuario, la carrera no es la correspondiente 
+                            estudiante[user]['Carrera'] = str(e)
+                            print('\n-------------------------------------------------------')
+                            print(f'\nSu nueva carrera es {e}\n')
+                            sleep(2)
+                            
                 case 2: # Agregar curso
                     print(chr(27)+"[2J")
                     
-
                     # Se determina cual es la carrera que tiene el usuario 
                     if 'Computacion' in estudiante[user]['Carrera']: 
                         for e in cursos:  # Se toman los diccionarios con los datos de los cursos 
@@ -351,32 +353,60 @@ def inicio():
                         print(estudiante)
                         sleep(3)
 
-                case 3: # Agregar actividades
+                case 3: # Agregar actividades  EDITANDO 
                     print(chr(27)+"[2J")
+                    print(""" 
+                        ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+                                                Actividades
+                        ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+                            1) Clase -> Tareas, proyectos, examenes... 
+                            2) ExtraClase -> Repasar materia, practicar ...
+                            3) Ocio -> Leer, hacer ejercicio, salir a comer...
+                            """)
+                    resp=int(input('\t\nDigite el tipo de actividadc(1,2,3): '))
+
                     actividades = {}
+                    
+                    match resp:
+                        case 1:
+                            actividades ['Tipo actividad'] = "Clase"
+                            if ("S" == input('\t\n¿Esta actividad pertenece a un curso?(S o N):').upper()):
+                                actividades ['Curso asociado'] = input('\t\nNombre del curso al que pertenece: ')
+                        case 2:
+                            actividades ['Tipo actividad'] = "Extraclase"
+                            if ("S" == input('\t\n¿Esta actividad pertenece a un curso?(S o N):').upper()):
+                                    actividades ['Curso asociado'] = input('\t\nNombre del curso al que pertenece: ')
+                        case 3:
+                            actividades ['Tipo actividad'] = "Ocio"
+
                     actividades ['Descripcion'] = input ('\t\nIngresar descripción de la actividad: ')
-                    if ("S" == input('\t\n¿Esta actividad pertenece a un curso?(S o N):').upper()):
-                        while True:
-                            actividades ['Curso asociado'] = input('\t\nNombre del curso al que pertenece: ')
-                            break
-                    actividades ['Fecha inicio'] = input('\t\nIngrese la fecha de inicio [aaaa/mm/dd]: ')
-                    actividades ['Fecha final'] = input('\t\nIngrese la fecha de finalizacion [aaaa/mm/dd]: ')
+                    fecha_inicio = input('\t\nIngrese la fecha de inicio [dd-mm-aaaa]: ')
+                    fecha_final = input('\t\nIngrese la fecha finalizacion [dd-mm-aaaa]: ')
+                    start = datetime.datetime.strptime(fecha_inicio, "%d-%m-%Y")
+                    end = datetime.datetime.strptime(fecha_final, "%d-%m-%Y")
+                    fecha_generadaa = pd.date_range(start, end)
+                    list_rango_fecha=fecha_generadaa.strftime("%d-%m-%Y")
+
+                    actividades ['Fecha inicio'] = fecha_inicio
+                    actividades ['Fecha final'] = fecha_final
+                    cant_dias=cont_dias(list_rango_fecha)
+                    actividades ['Dias de duracion'] = cant_dias
                     estudiante[user]['Actividades'] = actividades 
                     print(f"\t\nLa actividad agregada es {estudiante[user]['Actividades']}")
-                    sleep(3)
-                    # Falta asociar las fechas a un dia de la semana 
-
-                    #actividades['Semana'] = input('\nDescripción de la actividad: ')
-
+                    sleep(4)
+                    
                 case 4: # Imprimir actividades/ Esta parte esta incompleta 
                     print(chr(27)+"[2J")
-                    consulta_actividad = input('\t\nIngrese la fecha que desea consultar: ')
-                    if consulta_actividad in estudiante[user]['Actividades']:
+                    consulta_actividad = input('\t\nIngrese la fecha que desea consultar [dd-mm-aaaa]: ')
+                    if consulta_actividad in estudiante[user]['Actividades']['Fecha incio']: # Da error
+                        print(estudiante[user]['Actividades'])
+                        sleep(10)
+                    elif consulta_actividad in estudiante[user]['Actividades']['Fecha final']:
                         print(estudiante[user]['Actividades'])
                         sleep(10)
                     else:
                         print('No tiene ninguna actividad')
-                        sleep(10)
+                        sleep(3)
                 case 5: 
                     break
                                      

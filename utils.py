@@ -1,6 +1,5 @@
 from hashlib import md5
 from getpass import getpass
-import time
 
 
 def cifrar (entrada):
@@ -13,4 +12,5 @@ def obtener_calve(mensaje):
     return (pswd)
 
     
+
 
