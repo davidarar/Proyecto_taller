@@ -183,7 +183,7 @@ def inicio():
                 tupla_estudiante= (user_estudiante,contraseña)
                 cuenta_estudiante ['Cuenta de usuario'] = tupla_estudiante
                 usuarios[user_estudiante]=contraseña 
-                estudiante[user_estudiante]=cuenta_estudiante # En el diccionario global de estudiantes, se guarda el usuario y su información
+                estudiante[user_estudiante]=cuenta_estudiante #En el diccionario global de estudiantes, se guarda el usuario y su información
 
             elif opc == 2: # Datos de persona administrativa
                     cuenta_admin = dict()
