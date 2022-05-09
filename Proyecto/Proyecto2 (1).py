@@ -2,9 +2,10 @@ from utils import cifrar,obtener_calve # Librería que contine funciones que per
 from time import sleep # Libreria que contienen la función sleep que permite agregar un retraso en la ejecución de un programa
 import datetime
 import pandas  as pd
+
 #classes Orientada a Objetos
 class Cursos():
-    
+    #constructor de la clase
     def __init__(self, nombre, creditos, horas_lectivas, fecha_de_inicio, fecha_de_finalizacion, horario_de_clase, careras) -> None:
         self.curso=nombre
         self.creditos=creditos
@@ -27,16 +28,32 @@ lista_de_cursos.sig=Cursos("Quimica Basica 1", "3", "4", "07/02/2022", "03/06/20
 lista_de_cursos.sig.sig=Cursos("Matematica General", "2", "5", "07/02/2022", "03/06/2022", "Miercoles/12:30pm-4:40pm", "Computacion, Agronomia, Administracion de Empresas, Electronica")
 
 lista_de_cursos.imprimir(lista_de_cursos)
-
-
-    
+   
 # Variable global tipo tupla que guarda diccionarios con datos de cada curso
 cursos =({'Curso':'Comunicacion Escrita','Créditos': 2 ,'Horas lectivas': 3 ,'Fecha inicio':'07-02-2022','Fecha finalizacion':'03-06-2022','Horario clases':'Lunes/5:05pm-7:45pm','Carreras':['Computacion','Agronomia','Administracion de Empresas']},
         {'Curso':'Quimica Basica 1','Créditos':3 ,'Horas lectivas': 4 ,'Fecha inicio':'07-02-2022','Fecha finalizacion':'03-06-2022','Horario clases':'Martes,Jueves/7:55am-9:40am','Carreras':['Agronomia','Electronica']},
         {'Curso':'Matematica General','Créditos':2 ,'Horas lectivas': 5 ,'Fecha inicio':'07-02-2022','Fecha finalizacion':'03-06-2022','Horario clases':'Miercoles/12:30pm-4:05pm','Carreras':['Computacion','Agronomia','Administracion de Empresas','Electronica']})
 
+#classe para las carreras 
+class Carrera():
+    #declaramos el contructor 
+    def __init__(self, nombre ) -> None:
+        self.sig=None
+        self.nombre = nombre
+    #metodos    
+    def imprimir (self, primero):
+        print(primero.curso)
+        if self.sig != None:
+            self.imprimir(self.sig) 
+             
+#listas de punteros           
+lista_de_carreras=Carrera("Computacion")
+lista_de_carreras.sig=Carrera("Agronomia")
+lista_de_carreras.sig.sig=Carrera("Electronica")
+lista_de_carreras.sig.sig.sig=Carrera("Administracion de Empresas")
+
 # Variable global tipo tupla que guarda los nombres de cada carrera
-carreras = ('Computacion','Agronomia','Electronica','Administracion de empresas')
+carreras = ('Computacion','Agronomia','Electronica','Administracion de Empresas')
 
 # Variable global tipo diccionario que guarda diccionarios con datos de cada usuario estudiante
 estudiante = {'kris':{'Nombre':'Kristell','Apellido1':'Salazar','Apellido2':'Garcia','Carrera':'Electronica','Usuario':('kris','81dc9bdb52d04dc20036dbd8313ed055')}}
