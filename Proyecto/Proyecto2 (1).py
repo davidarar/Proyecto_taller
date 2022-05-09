@@ -3,10 +3,37 @@ from time import sleep # Libreria que contienen la función sleep que permite ag
 import datetime
 import pandas  as pd
 
+class Cursos():
+    
+    def __init__(self, nombre, creditos, horas_lectivas, fecha_de_inicio, fecha_de_finalizacion, horario_de_clase, careras) -> None:
+        self.curso=nombre
+        self.creditos=creditos
+        self.horas_lectivas=horas_lectivas
+        self.fecha_de_inicio=fecha_de_inicio
+        self.fecha_de_finalizacion=fecha_de_finalizacion 
+        self.horario_de_clase=horario_de_clase
+        self.careras=careras
+        
+    def imprimir (self, primero):
+        print(primero.curso)
+        if self.sig != None:
+            self.imprimir(self.sig)
+           
+                 
+lista_de_cursos=Cursos("Comunicacion Escrita", "2", "3", "07/02/2022", "03/06/2022", "Lunes/5:05pm-7:45pm", "Computacion, Agronomia, Administracion de Empresas")
+
+lista_de_cursos.sig=Cursos("Quimica Basica 1", "3", "4", "07/02/2022", "03/06/2022", "Martes,Jueves/7:55am-9:40pm", "Agronomia, Electronica")  
+    
+lista_de_cursos.sig.sig=Cursos("Matematica General", "2", "5", "07/02/2022", "03/06/2022", "Miercoles/12:30pm-4:40pm", "Computacion, Agronomia, Administracion de Empresas, Electronica")
+
+lista_de_cursos.imprimir(lista_de_cursos)
+
+
+    
 # Variable global tipo tupla que guarda diccionarios con datos de cada curso
 cursos =({'Curso':'Comunicacion Escrita','Créditos': 2 ,'Horas lectivas': 3 ,'Fecha inicio':'07-02-2022','Fecha finalizacion':'03-06-2022','Horario clases':'Lunes/5:05pm-7:45pm','Carreras':['Computacion','Agronomia','Administracion de Empresas']},
         {'Curso':'Quimica Basica 1','Créditos':3 ,'Horas lectivas': 4 ,'Fecha inicio':'07-02-2022','Fecha finalizacion':'03-06-2022','Horario clases':'Martes,Jueves/7:55am-9:40am','Carreras':['Agronomia','Electronica']},
-        {'Curso':'Matematica General','Créditos':2 ,'Horas lectivas': 5 ,'Fecha inicio':'07-02-2022','Fecha finalizacion':'03-06-2022','Horario clases':'Miercoles/12:30md-4:05pm','Carreras':['Computacion','Agronomia','Administracion de Empresas','Electronica']})
+        {'Curso':'Matematica General','Créditos':2 ,'Horas lectivas': 5 ,'Fecha inicio':'07-02-2022','Fecha finalizacion':'03-06-2022','Horario clases':'Miercoles/12:30pm-4:05pm','Carreras':['Computacion','Agronomia','Administracion de Empresas','Electronica']})
 
 # Variable global tipo tupla que guarda los nombres de cada carrera
 carreras = ('Computacion','Agronomia','Electronica','Administracion de empresas')
