@@ -1,3 +1,5 @@
+from mailbox import NoSuchMailboxError
+from typing_extensions import Self
 from utils import cifrar,obtener_calve # Librería que contine funciones que permiten cifrar y ocultar la clave ingresada
 from time import sleep # Libreria que contienen la función sleep que permite agregar un retraso en la ejecución de un programa
 import datetime
@@ -34,6 +36,8 @@ cursos =({'Curso':'Comunicacion Escrita','Créditos': 2 ,'Horas lectivas': 3 ,'F
         {'Curso':'Quimica Basica 1','Créditos':3 ,'Horas lectivas': 4 ,'Fecha inicio':'07-02-2022','Fecha finalizacion':'03-06-2022','Horario clases':'Martes,Jueves/7:55am-9:40am','Carreras':['Agronomia','Electronica']},
         {'Curso':'Matematica General','Créditos':2 ,'Horas lectivas': 5 ,'Fecha inicio':'07-02-2022','Fecha finalizacion':'03-06-2022','Horario clases':'Miercoles/12:30pm-4:05pm','Carreras':['Computacion','Agronomia','Administracion de Empresas','Electronica']})
 
+# Variable global tipo tupla que guarda los nombres de cada carrera
+carreras = ('Computacion','Agronomia','Electronica','Administracion de Empresas')
 #classe para las carreras 
 class Carrera():
     #declaramos el contructor 
@@ -41,37 +45,70 @@ class Carrera():
         self.sig=None
         self.nombre = nombre
     #metodos    
-    def imprimir (self, primero):
-        print(primero.curso)
+    def imprimir (self):
+        print(self.nombre)
         if self.sig != None:
-            self.imprimir(self.sig) 
+            self.sig.imprimir() 
              
-#listas de punteros           
+#listas de punteros de la clase carreras           
 lista_de_carreras=Carrera("Computacion")
 lista_de_carreras.sig=Carrera("Agronomia")
 lista_de_carreras.sig.sig=Carrera("Electronica")
 lista_de_carreras.sig.sig.sig=Carrera("Administracion de Empresas")
-
-# Variable global tipo tupla que guarda los nombres de cada carrera
-carreras = ('Computacion','Agronomia','Electronica','Administracion de Empresas')
+lista_de_carreras.imprimir()
 
 # Variable global tipo diccionario que guarda diccionarios con datos de cada usuario estudiante
-estudiante = {'kris':{'Nombre':'Kristell','Apellido1':'Salazar','Apellido2':'Garcia','Carrera':'Electronica','Usuario':('kris','81dc9bdb52d04dc20036dbd8313ed055')}}
+estudiante = {'kris':{'Nombre':'Kristell','Apellido1':'Salazar','Apellido2':'Garcia','Carrera':'Electronica'}}
 
+#classe persona 
+class Persona:
+    def __init__(self, nombre, apellido1, apellido2) -> None:
+        self.sig=None
+        self.nombre = nombre
+        self.primer_apellido = apellido1
+        self.segundo_apellido = apellido2
+    #metodo de imprimir
+    def imprimir (self):
+        print(self.nombre)
+        if self.sig != None:
+            self.sig.imprimir() 
+            
+#classe hija de la clase persona, 'classe hija estudiante'     
+class Estudiante(Persona):
+    def __init__(self, nombre, apellido1, apellido2, carrera) -> None:
+        super().__init__(nombre, apellido1, apellido2)
+        self.carrera = carrera
+     
+#lista de punteros de la clase hija Estudiantes
+lista_Estudiante = Estudiante("Kristell", "Salazar", "Garcia", "Electronica")
+lista_Estudiante.sig = Estudiante("Aaron", "Gonzalez", "Araya", "Computacion")
+lista_Estudiante.sig.sig = Estudiante("Kennet", "Araya", "Arias", "Agronomia")
 
-
-
+#uso del metodo implementado que es imprimir, que se coloco en la classe madre "persona"
+lista_Estudiante.imprimir()
+        
 # Variable global tipo tupla que guarda diccionarios con datos de cada usuario administrador
-administrativo = {'tomy':{'Nombre':'Tomas','Apellido1':'Rodriguez','Apellido2':'Suarez','Telefono':'87895634','Usuario':('tomy','4a7d1ed414474e4033ac29ccb8653d9b')},
-                 'tavo':{'Nombre':'Gustavo','Apellido1':'Nuñez','Apellido2':'Amador','Telefono':'60253875','Usuario':('tavo','b56a18e0eacdf51aa2a5306b0f533204')}}
+administrativo = {'tomy':{'Nombre':'Tomas','Apellido1':'Rodriguez','Apellido2':'Suarez','Telefono':'8789-5634'},
+                 'tavo':{'Nombre':'Gustavo','Apellido1':'Nuñez','Apellido2':'Amador','Telefono':'60253875'}}
 
-curso_estudiante=() #Almacena los cursos matriculados por el estudiante
+class Administrativo(Persona):
+    def __init__(self, nombre, apellido1, apellido2, telefonos) -> None:
+        super().__init__(nombre, apellido1, apellido2)
+        self.telefonos = telefonos
+
+#lista de punteros de la clase hija administrativos 
+lista_administrativos = Administrativo("Tomas", "Rodriguez", "Suarez", "8789-5634")
+lista_administrativos.sig = Administrativo("Gustavo", "Nuñez", "Amador", "6025-3875")
+
+#uso del metodo implementado que es imprimir, que se coloco en la classe madre "persona"
+lista_administrativos.imprimir()
 
 # Variable global tipo tupla que guarda diccionarios con datos de cada usuario y su contraseña
 usuarios = ({'tomy':'4a7d1ed414474e4033ac29ccb8653d9b',
            'kris':'81dc9bdb52d04dc20036dbd8313ed055',
            'tavo':'b56a18e0eacdf51aa2a5306b0f533204'})
 
+curso_estudiante=() #Almacena los cursos matriculados por el estudiante
 
 def cont_dias(list_fechas):
     return len(list_fechas)
