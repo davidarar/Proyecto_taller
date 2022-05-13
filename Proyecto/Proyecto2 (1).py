@@ -38,7 +38,6 @@ class Lista:
         
         return self.sig.obtener(posi-1)
 
-
 # ------------------------------------------------------------------classes hija de lista, 'clase cursos'-------------------------------------------------------------------------------------------------
 class Cursos(Lista):
     # constructor de la clase

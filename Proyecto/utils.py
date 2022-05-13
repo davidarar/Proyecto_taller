@@ -9,6 +9,3 @@ def cifrar (entrada):
 def obtener_calve(mensaje):
     pswd = getpass(mensaje+": ")
     return (pswd)
-
-    
-
