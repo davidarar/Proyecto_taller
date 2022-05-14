@@ -8,6 +8,7 @@ from time import (
 import datetime
 import pandas as pd
 
+""""
 #-----------------------------------------------------------------------clase lista "classe madre"----------------------------------------------------------------------------------------
 # las demas clases se heredan de esta 
  
@@ -144,7 +145,8 @@ class Administrativo(Persona):
 lista_administrativos = Administrativo("Tomas", "Rodriguez", "Suarez", "8789-5634")
 lista_administrativos.sig = Administrativo("Gustavo", "Nuñez", "Amador", "6025-3875")
 lista_administrativos.imprimir()  # uso del metodo implementado que es imprimir, que se coloco en la classe madre "persona"
-print(lista_administrativos.obtener(0)) #imprimir un elemento en la posicion espesifica
+print(lista_administrativos.obtener(0)) #imprimir un elemento en la posicion espesificam 
+"""
 
 
 # Variable global tipo tupla que guarda diccionarios con datos de cada usuario y su contraseña
