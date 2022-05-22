@@ -3,8 +3,7 @@ from tkinter import Button, Entry, Label, StringVar
 from tkinter.messagebox import showwarning
 from accionesVentanas import volverVentana,cerrarVentana, mostrarVentana,ocultarVentana
 from lista_usuarios import cargar_lista_estudiantes,cargar_lista_administrativos
-from menu_estd import v_menuEstudiante
-from menu_admin import v_menuAdm
+from menus import v_menuEstudiante,v_menuAdm
 from registros import RegistroEst,RegistroAdm
 
 
@@ -49,15 +48,30 @@ class vLogin:
     def regresar(self):
         volverVentana(self.vtna_login,self.vtna)
 
-        """cerrarVentana(self.vtna_login)
-        mostrarVentana(self.vtna)"""
-
 
     def abrirRegistro(self):
         if self.rol==0:
             RegistroEst()
         else:
             RegistroAdm()
+
+    def cambiarCarrera(self):
+        user=self.sv_username.get()
+        psw=self.sv_contrasena.get()
+
+        puntero=self.l_estudiantes
+        if puntero==None:
+            showwarning (title="Alerta", message="No hay usuarios en en archivo")
+        else:
+            while puntero!=None:
+                if  (puntero.carrera==user and puntero.contraseña==psw):
+                    ocultarVentana(self.vtna_login)
+                    us=user
+                    v_menuEstudiante()
+                    break
+                else:
+                    puntero=puntero.sig
+
 
     def validacion(self):
         if self.rol==0:
@@ -72,19 +86,19 @@ class vLogin:
         if user=="" and psw=="":
             showwarning (title="Alerta", message="No pueden estan en blanco el nombre de usuario ni la contraseña")
         else:
-            puntero=self.l_administrativos
-            if puntero==None:
+            punteroAdm=self.l_administrativos
+            if punteroAdm==None:
                 showwarning (title="Alerta", message="Usuario no válido")
             else:
                 valido=False
-                while puntero!=None:
-                    if (puntero.usuario==user and puntero.contraseña==psw):
+                while punteroAdm!=None:
+                    if (punteroAdm.usuario==user and punteroAdm.contraseña==psw):
                         valido=True
                         ocultarVentana(self.vtna_login)
                         v_menuAdm()
                         break
                     else:
-                        puntero=puntero.sig
+                        punteroAdm=punteroAdm.sig
                 if not valido:
                     showwarning (title="Alerta", message="Usuario no válido")
 
@@ -105,6 +119,7 @@ class vLogin:
                     if (puntero.usuario==user and puntero.contraseña==psw):
                         valido=True
                         ocultarVentana(self.vtna_login)
+            
                         v_menuEstudiante()
                         break
                     else:

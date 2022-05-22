@@ -53,39 +53,33 @@ class Cursos(Lista):
         self.horario_de_clase = horario_de_clase
         self.careras = careras
 
-lista_de_cursos = Cursos(
-    "Comunicacion Escrita",
-    "2",
-    "3",
-    "07/02/2022",
-    "03/06/2022",
-    "Lunes/5:05pm-7:45pm",
-    "Computacion, Agronomia, Administracion de Empresas",
-)
-lista_de_cursos.insertar(
-    Cursos(
-        "Quimica Basica 1",
-        "3",
-        "4",
-        "07/02/2022",
-        "03/06/2022",
-        "Martes,Jueves/7:55am-9:40pm",
-        "Agronomia, Electronica",
-    )
-)
-lista_de_cursos.insertar(
-    Cursos(
-        "Matematica General",
-        "2",
-        "5",
-        "07/02/2022",
-        "03/06/2022",
-        "Miercoles/12:30pm-4:40pm",
-        "Computacion, Agronomia, Administracion de Empresas, Electronica",
-    )
-)
-#lista_de_cursos.imprimir()
-#print(lista_de_cursos.obtener(0)) #imprimir un elemento en la posicion espesifica 
+    def guardar_curso(self):
+        puntero=self
+        try:
+            with open("cursos.txt","ta") as archivo:
+                archivo.writelines([puntero.curso,puntero.creditos,puntero.horas_lectivas,puntero.fecha_de_inicio,puntero.fecha_de_finalizacion,puntero.horario_de_clase,puntero.careras].__str__()+"\n")
+                while puntero.sig!=None:
+                    puntero=puntero.sig
+                    archivo.writelines([puntero.curso,puntero.creditos,puntero.horas_lectivas,puntero.fecha_de_inicio,puntero.fecha_de_finalizacion,puntero.horario_de_clase,puntero.careras].__str__()+"\n")
+        except FileNotFoundError as error:
+            showerror(message='No se pudo agregar el curso al archivo')
+
+def cargar_lista_cursos():
+    """Carga del archivo de cursos a una lista de instancias cursos"""
+    lista_cursos=None
+    try:
+        with open("estudiantes.txt","tr") as lector:
+            a=lector.readline()
+            p=eval(a)
+            lista_cursos=Cursos(p[0],p[1],p[2],p[3],p[4],p[5])
+            p=lector.readline()
+            while (p!=""):
+                p=eval(p)
+                lista_cursos.insertar(Cursos(p[0],p[1],p[2],p[3],p[4],p[5]))
+                p=lector.readline()
+    except FileNotFoundError as error:
+        showwarning(title="Error", message="No se pudo cargar los cursos del archivo")
+    return lista_cursos
 
 # -------------------------------------------------------------------classes hija de lista, 'clase carrera----------------------------------------------------------------------------------------------
 class Carrera(Lista):
@@ -95,14 +89,34 @@ class Carrera(Lista):
         self.nombre = nombre
 
 
-# listas de punteros de la clase carreras
-lista_de_carreras = Carrera("Computacion")
-lista_de_carreras.insertar(Carrera("Agronomia"))
-lista_de_carreras.insertar(Carrera("Electronica"))
-lista_de_carreras.insertar(Carrera("Administracion de Empresas"))
-#lista_de_carreras.imprimir()
-#print(lista_de_carreras.obtener(0)) #imprimir un elemento en la posicion espesifica
 
+    def guardar_carrera(self):
+        puntero=self
+        try:
+            with open("carreras.txt","ta") as archivo:
+                archivo.writelines([puntero.nombre].__str__()+"\n")
+                while puntero.sig!=None:
+                    puntero=puntero.sig
+                    archivo.writelines([puntero.nombre].__str__()+"\n")        
+        except FileNotFoundError as error:
+            showerror(message='No se pudo agregar la carrera al archivo')
+
+def cargar_lista_carrera():
+    """Carga del archivo de carreras a una lista de instancias carrera"""
+    lista_carreras=None
+    try:
+        with open("carreras.txt","tr") as lector:
+            a=lector.readline()
+            p=eval(a)
+            lista_carreras=Cursos(p[0])
+            p=lector.readline()
+            while (p!=""):
+                p=eval(p)
+                lista_carreras.insertar(Cursos(p[0]))
+                p=lector.readline()
+    except FileNotFoundError as error:
+        showwarning(title="Error", message="No se pudo cargar la lista de carreras")
+    return lista_carreras
 # ----------------------------------------------------------classe hija de la clase lista "clase persona" la cual hereda los metodos de la clase lista-------------------------------------------------------
 class Persona(Lista):
     def __init__(self, nombre, apellido1, apellido2,usuario,contraseña) -> None:
@@ -132,20 +146,13 @@ class Estudiante(Persona):
             showerror(message='No se pudo agregar el estudiante a estudiantes.txt')
 
 
-# lista de punteros de la clase hija Estudiantes
-"""
-lista_Estudiante = Estudiante("Kristell", "Salazar", "Garcia", "Electronica","kris","123")
-lista_Estudiante.sig = Estudiante("Aaron", "Gonzalez", "Araya", "Computacion","znails","911")
-lista_Estudiante.sig.sig = Estudiante("Kennet", "Araya", "Arias", "Agronomia","ken","321")
-"""
-
 def cargar_lista_estudiantes():
     """Carga del archivo de estudiantes a una lista de instancias persona"""
     lista_personas=None
     try:
         with open("estudiantes.txt","tr") as lector:
             a=lector.readline()
-            p=eval(a)
+            p=eval(a) 
             lista_personas=Estudiante(p[0],p[1],p[2],p[3],p[4],p[5])
             p=lector.readline()
             while (p!=""):
@@ -156,12 +163,7 @@ def cargar_lista_estudiantes():
         showwarning(title="Error", message="No se pudo cargar la lista de estudiantes de administrativos.txt")
     return lista_personas
 
-#lista_de_estudiantes=cargar_lista_estudiantes()
 
-
-# uso del metodo implementado que es imprimir, que se coloco en la classe madre "persona"
-#lista_Estudiante.imprimir()
-#print(lista_Estudiante.obtener(0)) #imprimir un elemento en la posicion espesifica
 # ----------------------------------------------------------------clase Hija de persona la cual hereda los metodos de la clase lista-----------------------------------------------------------------------
 
 class Administrativo(Persona):
@@ -180,26 +182,20 @@ class Administrativo(Persona):
         except FileNotFoundError as error:
             showerror(message='No se pudo guardar el administrador en el archivo ')
 
-# lista de punteros de la clase hija administrativos
-lista_administrativos = Administrativo("Tomas", "Rodriguez", "Suarez", "8789-5634","tom",119)
-lista_administrativos.sig = Administrativo("Gustavo", "Nuñez", "Amador", "6025-3875","guz",000)
-#lista_administrativos.imprimir()  # uso del metodo implementado que es imprimir, que se coloco en la classe madre "persona"
-#print(lista_administrativos.obtener(0)) #imprimir un elemento en la posicion espesifica
-
 
 def cargar_lista_administrativos():
     """Carga del archivo de estudiantesa una lista de instancias persona"""
-    #lista_personas=None
+    lista_admin=None
     try:
         with open("administrativos.txt","tr") as lector:
             a=lector.readline()
             p=eval(a)
-            lista_personas=Administrativo(p[0],p[1],p[2],p[3],p[4],p[5])
+            lista_admin=Administrativo(p[0],p[1],p[2],p[3],p[4],p[5])
             p=lector.readline()
             while (p!=""):
                 p=eval(p)
-                lista_personas.insertar(Administrativo(p[0],p[1],p[2],p[3],p[4],p[5]))
+                lista_admin.insertar(Administrativo(p[0],p[1],p[2],p[3],p[4],p[5]))
                 p=lector.readline()
     except FileNotFoundError as error:
         showwarning(title="Error", message="No se pudo cargar la lista de administrativos")
-    return lista_personas
+    return lista_admin

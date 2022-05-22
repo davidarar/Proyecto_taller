@@ -1,7 +1,7 @@
 from ast import Lambda
 import tkinter as tk
 from tkinter import Button, Entry, Label, StringVar,ttk
-from lista_usuarios import Estudiante,Administrativo
+from lista_usuarios import Estudiante,Administrativo,Cursos
 from tkinter.messagebox import showwarning, askyesno
 from accionesVentanas import volverVentana,cerrarVentana,ocultarVentana
 
@@ -74,6 +74,7 @@ class RegistroEst:
             
         except:
             showwarning(title="Alerta", message="No se ha pudo agregar el estudiante")
+    
 
 class RegistroAdm:
 
@@ -136,7 +137,4 @@ class RegistroAdm:
         except:
             showwarning(title="Alerta", message="No se ha pudo agregar el administrativo")
 
-
-if __name__ == "__main__":
-    pass
 
