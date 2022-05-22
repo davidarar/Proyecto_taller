@@ -1,1 +1,1 @@
-['Karina', 'Urbina', 'Alvarez', 'Computacion', 'kari', '123',[Tarea de Ingles ]]
+['Karina', 'Urbina', 'Alvarez', 'Computacion', 'kari', '123']
