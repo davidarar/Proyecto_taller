@@ -9,14 +9,14 @@ from registros import RegistroEst,RegistroAdm
 
 class vLogin:
     sv_contrasena,sv_username,vtna,rol,vtna_login=[None,None,None,None,None]
-    """l_estudiantes=None
-    l_administrativos=None"""
+    #l_estudiantes=None
+    #l_administrativos=None
     #l_estudiantes=cargar_lista_estudiantes()
     #l_administrativos= cargar_lista_administrativos
 
     def __init__(self,vtna,rol) -> None:
         self.l_estudiantes=cargar_lista_estudiantes()
-        self.l_administrativos= cargar_lista_administrativos
+        self.l_administrativos= cargar_lista_administrativos()
 
         self.vtna=vtna
         self.rol=rol

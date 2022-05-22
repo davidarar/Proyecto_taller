@@ -81,7 +81,7 @@ def v_menuAdm():
     menu_admin.mainloop()
 
 
-v_menuAdm()
+#v_menuAdm()
 
 
 #v_menuEstudiante()
