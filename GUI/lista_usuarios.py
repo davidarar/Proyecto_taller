@@ -63,6 +63,8 @@ class Cursos(Lista):
                     archivo.writelines([puntero.curso,puntero.creditos,puntero.horas_lectivas,puntero.fecha_de_inicio,puntero.fecha_de_finalizacion,puntero.horario_de_clase,puntero.careras].__str__()+"\n")
         except FileNotFoundError as error:
             showerror(message='No se pudo agregar el curso al archivo')
+        finally:
+            archivo.close()  
 
 def cargar_lista_cursos():
     """Carga del archivo de cursos a una lista de instancias cursos"""
@@ -79,6 +81,8 @@ def cargar_lista_cursos():
                 p=lector.readline()
     except FileNotFoundError as error:
         showwarning(title="Error", message="No se pudo cargar los cursos del archivo")
+    finally:
+        lector.close()  
     return lista_cursos
 
 # -------------------------------------------------------------------classes hija de lista, 'clase carrera----------------------------------------------------------------------------------------------
@@ -94,12 +98,14 @@ class Carrera(Lista):
         puntero=self
         try:
             with open("carreras.txt","ta") as archivo:
-                archivo.writelines([puntero.nombre].__str__()+"\n")
+                archivo.writelines(puntero.nombre.__str__()+"\n")
                 while puntero.sig!=None:
                     puntero=puntero.sig
-                    archivo.writelines([puntero.nombre].__str__()+"\n")        
+                    archivo.writelines(puntero.nombre.__str__()+"\n")        
         except FileNotFoundError as error:
             showerror(message='No se pudo agregar la carrera al archivo')
+        finally:
+            archivo.close()  
 
 def cargar_lista_carrera():
     """Carga del archivo de carreras a una lista de instancias carrera"""
@@ -116,6 +122,8 @@ def cargar_lista_carrera():
                 p=lector.readline()
     except FileNotFoundError as error:
         showwarning(title="Error", message="No se pudo cargar la lista de carreras")
+    finally:
+        lector.close()  
     return lista_carreras
 # ----------------------------------------------------------classe hija de la clase lista "clase persona" la cual hereda los metodos de la clase lista-------------------------------------------------------
 class Persona(Lista):
@@ -138,13 +146,14 @@ class Estudiante(Persona):
         puntero=self
         try:
             with open("estudiantes.txt","ta") as archivo:
-                archivo.writelines([puntero.nombre,puntero.primer_apellido,puntero.segundo_apellido,puntero.carrera,puntero.usuario,puntero.contraseña].__str__()+"\n")
+                archivo.writelines("\n"+[puntero.nombre,puntero.primer_apellido,puntero.segundo_apellido,puntero.carrera,puntero.usuario,puntero.contraseña].__str__())
                 while puntero.sig!=None:
                     puntero=puntero.sig
-                    archivo.writelines([puntero.nombre,puntero.primer_apellido,puntero.segundo_apellido,puntero.carrera,puntero.usuario,puntero.contraseña].__str__()+"\n") 
+                    archivo.writelines("\n"+[puntero.nombre,puntero.primer_apellido,puntero.segundo_apellido,puntero.carrera,puntero.usuario,puntero.contraseña].__str__()) 
         except FileNotFoundError as error:
             showerror(message='No se pudo agregar el estudiante a estudiantes.txt')
-
+        finally:
+            archivo.close()  
 
 def cargar_lista_estudiantes():
     """Carga del archivo de estudiantes a una lista de instancias persona"""
@@ -161,6 +170,8 @@ def cargar_lista_estudiantes():
                 p=lector.readline()
     except FileNotFoundError as error:
         showwarning(title="Error", message="No se pudo cargar la lista de estudiantes de administrativos.txt")
+    finally:
+        lector.close()   
     return lista_personas
 
 
@@ -181,6 +192,8 @@ class Administrativo(Persona):
                     archivo.writelines([puntero.nombre,puntero.primer_apellido,puntero.segundo_apellido,puntero.telefonos,puntero.usuario,puntero.contraseña].__str__()+"\n") 
         except FileNotFoundError as error:
             showerror(message='No se pudo guardar el administrador en el archivo ')
+        finally:
+            archivo.close()   
 
 
 def cargar_lista_administrativos():
@@ -198,4 +211,6 @@ def cargar_lista_administrativos():
                 p=lector.readline()
     except FileNotFoundError as error:
         showwarning(title="Error", message="No se pudo cargar la lista de administrativos")
+    finally:
+        lector.close()   
     return lista_admin

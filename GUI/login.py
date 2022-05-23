@@ -4,9 +4,8 @@ from tkinter.messagebox import showwarning, askyesno
 from accionesVentanas import cerrarVentana
 from vLogin import vLogin
 
+#-------------------------------------Ventana principal del Programa -----------------------------------------------------------------------
 
-
-#-------------------------------------Ventana principal - Selcionar Rol -----------------------------------------------------------------------
 vtna_principal = Tk() 
 vtna_principal.geometry("400x300")
 vtna_principal.title("Administrador del Tiempo")
